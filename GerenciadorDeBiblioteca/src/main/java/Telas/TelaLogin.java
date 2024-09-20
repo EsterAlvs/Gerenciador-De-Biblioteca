@@ -6,6 +6,7 @@ package Telas;
 
 
 import Telas.TelaPrincipal;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        ImageIcon icon3 = new ImageIcon(getClass().getResource("/Imagens/logo_size_3.jpg"));
     }
 
     /**

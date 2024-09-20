@@ -6,53 +6,35 @@ package Conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
  * @author ester
  */
 public class Conexao {
-    private static final String url = "jdbc:sqlite:bancoBiblioteca.db";
-    public static Connection getConnection(){
-    try {
-        return DriverManager.getConnection(url);
-    } catch (SQLException ex) {
-        Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    return null;
-    }
-    
-    public void closeConnection(Connection con){
-        try{
-            con.close();
-        } catch (SQLException ex){
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-   
-    public void closeConnection(Connection con, PreparedStatement stmt){
-          closeConnection(con);
-        try {
-            
-           stmt.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs){
-        closeConnection(con, stmt);
-        try {
-            rs.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+   private static final String URL = "jdbc:sqlite:BancoBiblioteca.db";
 
+    public static Connection connect() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(URL);
+            System.out.println("Conexão com o banco de dados estabelecida.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return conn;
     }
-   }
 
+    public static void close(Connection conn) {
+        try {
+            if (conn != null) {
+                conn.close();
+                System.out.println("Conexão encerrada.");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}  

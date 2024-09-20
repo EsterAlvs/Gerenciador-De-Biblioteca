@@ -4,6 +4,9 @@
  */
 package Telas;
 
+import java.net.URL;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author ester
@@ -16,7 +19,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
      public TelaPrincipal() {
         initComponents();
+   
+    ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagens/logo_size.jpg"));
+    ImageIcon icon2 = new ImageIcon(getClass().getResource("/Imagens/logo_size_1.jpg"));
+    ImageIcon icon3 = new ImageIcon(getClass().getResource("/Imagens/logo_size_2.jpg"));
     }
+
+    
 
 
     /**

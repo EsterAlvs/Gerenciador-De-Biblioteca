@@ -4,10 +4,124 @@
  */
 package DAO;
 
+import Classes.Livros;
+import Conexao.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author ester
  */
 public class LivrosDAO {
     
+public void insert(Livros livro) {
+        String sql = "INSERT INTO livros(titulo, id_autor, id_categoria, ano) VALUES(?, ?, ?, ?)";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, livro.getTitulo());
+            pstmt.setInt(2, livro.getIdAutor());
+            pstmt.setInt(3, livro.getIdCategoria());
+            pstmt.setInt(4, livro.getAno());
+            pstmt.executeUpdate();
+            System.out.println("Livro inserido com sucesso.");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public Livros getById(int id) {
+        String sql = "SELECT * FROM livros WHERE id_livro = ?";
+        Livros livro = null;
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                livro = new Livros(
+                        rs.getInt("id_livro"),
+                        rs.getString("titulo"),
+                        rs.getInt("id_autor"),
+                        rs.getInt("id_categoria"),
+                        rs.getInt("ano")
+                );
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return livro;
+    }
+
+    public List<Livros> getAll() {
+        String sql = "SELECT * FROM livros";
+        List<Livros> livros = new ArrayList<>();
+
+        try (Connection conn = Conexao.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Livros livro = new Livros(
+                        rs.getInt("id_livro"),
+                        rs.getString("titulo"),
+                        rs.getInt("id_autor"),
+                        rs.getInt("id_categoria"),
+                        rs.getInt("ano")
+                );
+                livros.add(livro);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return livros;
+    }
+
+    public void update(Livros livro) {
+        String sql = "UPDATE livros SET titulo = ?, id_autor = ?, id_categoria = ?, ano = ? WHERE id_livro = ?";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, livro.getTitulo());
+            pstmt.setInt(2, livro.getIdAutor());
+            pstmt.setInt(3, livro.getIdCategoria());
+            pstmt.setInt(4, livro.getAno());
+            pstmt.setInt(5, livro.getId());
+            pstmt.executeUpdate();
+            System.out.println("Livro atualizado com sucesso.");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void delete(int id) {
+        String sql = "DELETE FROM livros WHERE id_livro = ?";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            System.out.println("Livro deletado com sucesso.");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
