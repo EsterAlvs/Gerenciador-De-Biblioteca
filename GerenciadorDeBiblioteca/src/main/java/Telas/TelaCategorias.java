@@ -243,13 +243,13 @@ public class TelaCategorias extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
     int selectedRow = jTableSaida.getSelectedRow();
     
-    // Verifica se há uma linha selecionada
+    
     if (selectedRow != -1) {
-        // Remove a linha da tabela
+       
         DefaultTableModel model = (DefaultTableModel) jTableSaida.getModel();
         model.removeRow(selectedRow);
     } else {
-        // Se nenhuma linha estiver selecionada, exibe uma mensagem
+     
         JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada para exclusão!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -259,8 +259,26 @@ public class TelaCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-    // TODO add your handling code here:
-     String nome;
+    String nome = jTextNome.getText();
+    String descricao = jTextDescricao.getText();
+
+   
+    Categorias categoria = new Categorias();
+    categoria.setNome(nome);
+    categoria.setDescricao(descricao);
+
+    
+    CategoriasDAO categoriaDAO = new CategoriasDAO();
+    categoriaDAO.inserirCategoria(categoria);
+
+ 
+    JOptionPane.showMessageDialog(this, "Categoria inserida com sucesso!");
+
+   
+    jTextNome.setText("");
+    jTextDescricao.setText("");  
+// TODO add your handling code here:
+    /** String nome;
      String descricao;
         
      nome = jTextNome.getText();
@@ -274,22 +292,22 @@ public class TelaCategorias extends javax.swing.JFrame {
           
       DefaultTableModel model = (DefaultTableModel) jTableSaida.getModel();
 
-    // Obtém o índice da linha selecionada na tabela
+   
     int selectedRowIndex = jTableSaida.getSelectedRow();
 
-    // Verifica se alguma linha está selecionada
+    
     if (selectedRowIndex != -1) {
-        // Atualiza os valores na linha selecionada
-        model.setValueAt(nome, selectedRowIndex, 0); // Atualiza a coluna 0 (Nome)
-        model.setValueAt(descricao, selectedRowIndex, 1); // Atualiza a coluna 1 (Descrição)
+        
+        model.setValueAt(nome, selectedRowIndex, 0); 
+        model.setValueAt(descricao, selectedRowIndex, 1); 
     } else {
-        // Se nenhuma linha estiver selecionada, exibe uma mensagem
+
         JOptionPane.showMessageDialog(null, "Selecione uma linha para atualizar!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
-    // Limpa os campos de texto após atualizar
+    
     jTextNome.setText("");
-    jTextDescricao.setText("");
+    jTextDescricao.setText("");*/
     
                               
   

@@ -78,6 +78,11 @@ public class TelaLivros extends javax.swing.JFrame {
                 btAdicionarMouseClicked(evt);
             }
         });
+        btAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarActionPerformed(evt);
+            }
+        });
 
         btExcluir.setText("Excluir");
         btExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -333,7 +338,32 @@ public class TelaLivros extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAnoActionPerformed
 
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
-        // TODO add your handling code here:
+    
+       String titulo = txtTitulo.getText();
+    int IdAutor = Integer.parseInt(txtAutor.getText()); 
+    int IdCategoria = Integer.parseInt(txtCategoria.getText());
+    int ano = Integer.parseInt(txtAno.getText()); 
+
+    
+    Livros livro = new Livros();
+    livro.setTitulo(titulo);
+    livro.setIdAutor(IdAutor); 
+    livro.setIdCategoria(IdCategoria); 
+    livro.setAno(ano);
+
+  
+    LivrosDAO livroDAO = new LivrosDAO();
+    livroDAO.inserirLivro(livro);
+
+    
+    JOptionPane.showMessageDialog(this, "Livro inserido com sucesso!");
+
+  
+    txtTitulo.setText("");
+    txtAutor.setText("");
+    txtCategoria.setText("");
+    txtAno.setText("");   
+        /*   // TODO add your handling code here:
          String titulo = txtTitulo.getText();
     String autor = txtAutor.getText();
     String categoria = txtCategoria.getText();
@@ -373,7 +403,7 @@ public class TelaLivros extends javax.swing.JFrame {
     txtTitulo.setText("");
     txtAutor.setText("");
     txtCategoria.setText("");
-    txtAno.setText("");
+    txtAno.setText(""); */
     }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void jButtonVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoltarMouseClicked
@@ -382,6 +412,33 @@ public class TelaLivros extends javax.swing.JFrame {
        frameTelaPrincipal.setVisible(true);
        setVisible(false);
     }//GEN-LAST:event_jButtonVoltarMouseClicked
+
+    private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
+        String titulo = txtTitulo.getText();
+    int IdAutor = Integer.parseInt(txtAutor.getText()); 
+    int IdCategoria = Integer.parseInt(txtCategoria.getText());
+    int ano = Integer.parseInt(txtAno.getText()); 
+
+    
+    Livros livro = new Livros();
+    livro.setTitulo(titulo);
+    livro.setIdAutor(IdAutor); 
+    livro.setIdCategoria(IdCategoria); 
+    livro.setAno(ano);
+
+  
+    LivrosDAO livroDAO = new LivrosDAO();
+    livroDAO.inserirLivro(livro);
+
+    
+    JOptionPane.showMessageDialog(this, "Livro inserido com sucesso!");
+
+  
+    txtTitulo.setText("");
+    txtAutor.setText("");
+    txtCategoria.setText("");
+    txtAno.setText("");
+    }//GEN-LAST:event_btAdicionarActionPerformed
 
     /**
      * @param args the command line arguments

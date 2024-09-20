@@ -127,7 +127,7 @@ public class AutoresDAO {
 
             while (rs.next()) {
                 Autores autor = new Autores();
-                autor.setIdAutor(rs.getInt("id_autor"));
+                autor.setId(rs.getInt("id_autor"));
                 autor.setNome(rs.getString("nome"));
                 autor.setBiografia(rs.getString("biografia"));
                 autores.add(autor);
@@ -138,5 +138,22 @@ public class AutoresDAO {
         }
 
         return autores;
+    }
+       public void inserirAutor(Autores autor) {
+        String sql = "INSERT INTO autores(nome, biografia) VALUES(?, ?)";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+       
+            pstmt.setString(1, autor.getNome());  
+            pstmt.setString(2, autor.getBiografia());  
+
+            pstmt.executeUpdate();
+            System.out.println("Autor inserido com sucesso!");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

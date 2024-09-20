@@ -120,4 +120,23 @@ public class CadastroDAO {
             System.out.println(e.getMessage());
         }
     }
+     public void inserirCadastro(Cadastro cadastro) {
+        String sql = "INSERT INTO cadastro(nome, email, senha) VALUES(?, ?, ?)";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+           
+            pstmt.setString(1, cadastro.getNome());
+            pstmt.setString(2, cadastro.getEmail());
+            pstmt.setString(3, cadastro.getSenha());
+
+   
+            pstmt.executeUpdate();
+            System.out.println("Cadastro inserido com sucesso!");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

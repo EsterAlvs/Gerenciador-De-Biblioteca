@@ -148,5 +148,26 @@ public void insert(Livros livro) {
 
         return livros;
     }
+    public void inserirLivro(Livros livro) {
+        String sql = "INSERT INTO livros(titulo, autor_id, categoria_id, ano) VALUES(?, ?, ?, ?)";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+          
+            pstmt.setString(1, livro.getTitulo());
+            pstmt.setInt(2, livro.getAutorId()); 
+            pstmt.setInt(3, livro.getCategoriaId()); 
+            pstmt.setInt(4, livro.getAno());
+
+            // Executando a query de inserção
+            pstmt.executeUpdate();
+            System.out.println("Livro inserido com sucesso!");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }   
+      
 }
 

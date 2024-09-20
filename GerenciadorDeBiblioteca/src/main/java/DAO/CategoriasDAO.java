@@ -138,4 +138,22 @@ public class CategoriasDAO {
 
         return categorias;
     }
+       public void inserirCategoria(Categorias categoria) {
+        String sql = "INSERT INTO categoria(nome, descricao) VALUES(?, ?)";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+          
+            pstmt.setString(1, categoria.getNome());
+            pstmt.setString(2, categoria.getDescricao());
+
+          
+            pstmt.executeUpdate();
+            System.out.println("Categoria inserida com sucesso!");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

@@ -1,5 +1,6 @@
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/Telas/TelaAutores.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/DAO/CategoriasDAO.java
+/home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/Classes/Usuario.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/DAO/LoginDAO.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/DAO/CadastroDAO.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/Telas/TelaCategorias.java
@@ -10,7 +11,6 @@
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/Classes/Login.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/Telas/TelaCadastro.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/DAO/LivrosDAO.java
-/home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/Telas/Teste.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/Conexao/Conexao.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/DAO/UsuarioDAO.java
 /home/ester/NetBeansProjects/ProjetoFinalJAVA/GerenciadorDeBiblioteca/src/main/java/Telas/TelaLivros.java

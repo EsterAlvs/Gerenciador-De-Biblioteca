@@ -200,7 +200,7 @@ public class TelaAutores extends javax.swing.JFrame {
 
         for (Autores autor : autores) {
             modelo.addRow(new Object[]{
-                autor.getIdAutor(),
+                autor.getId(),
                 autor.getNome(),
                 autor.getBiografia()
             });
@@ -208,7 +208,23 @@ public class TelaAutores extends javax.swing.JFrame {
     }
      
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
-        // TODO add your handling code here:
+       String nome = txtNome.getText();
+    String biografia = txtBiografia.getText();
+
+    Autores autor = new Autores();
+    autor.setNome(nome);
+    autor.setBiografia(biografia);
+
+   
+    AutoresDAO autorDAO = new AutoresDAO();
+    autorDAO.inserirAutor(autor);
+
+    
+    JOptionPane.showMessageDialog(this, "Autor inserido com sucesso!");
+
+    
+    txtNome.setText("");
+    txtBiografia.setText("");
     }//GEN-LAST:event_btAdicionarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
