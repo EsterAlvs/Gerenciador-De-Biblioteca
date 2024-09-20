@@ -4,6 +4,9 @@
  */
 package Telas;
 
+import Classes.Categorias;
+import DAO.CategoriasDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +21,7 @@ public class TelaCategorias extends javax.swing.JFrame {
      */
     public TelaCategorias() {
         initComponents();
+        carregarCategorias();
     }
 
     /**
@@ -96,13 +100,13 @@ public class TelaCategorias extends javax.swing.JFrame {
 
         jTableSaida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nome", "Descrição"
+                "ID", "Nome", "Descrição"
             }
         ));
         jScrollPane2.setViewportView(jTableSaida);
@@ -205,6 +209,21 @@ public class TelaCategorias extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
   
+    private void carregarCategorias() {
+        DefaultTableModel modelo = (DefaultTableModel) jTableSaida.getModel();
+        modelo.setNumRows(0);
+        CategoriasDAO categoriaDAO = new CategoriasDAO();
+        List<Categorias> categorias = categoriaDAO.getAllCategorias();
+
+        for (Categorias categoria : categorias) {
+            modelo.addRow(new Object[]{
+                categoria.getIdCategoria(),
+                categoria.getNome(),
+                categoria.getDescricao()
+            });
+        }
+    } 
+    
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         String nome;
         String descricao;

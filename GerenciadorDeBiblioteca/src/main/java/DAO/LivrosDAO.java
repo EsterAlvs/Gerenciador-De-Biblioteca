@@ -124,4 +124,29 @@ public void insert(Livros livro) {
             System.out.println(e.getMessage());
         }
     }
+      public List<Livros> getAllLivros() {
+        List<Livros> livros = new ArrayList<>();
+        String sql = "SELECT * FROM livros";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Livros livro = new Livros();
+                livro.setIdLivro(rs.getInt("id_livro"));
+                livro.setTitulo(rs.getString("titulo"));
+                livro.setIdAutor(rs.getInt("id_autor"));
+                livro.setIdCategoria(rs.getInt("id_categoria"));
+                livro.setAno(rs.getInt("ano"));
+                livros.add(livro);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return livros;
+    }
 }
+

@@ -116,4 +116,27 @@ public class AutoresDAO {
             System.out.println(e.getMessage());
         }
     }
+
+     public List<Autores> getAllAutores() {
+        List<Autores> autores = new ArrayList<>();
+        String sql = "SELECT * FROM autores";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Autores autor = new Autores();
+                autor.setIdAutor(rs.getInt("id_autor"));
+                autor.setNome(rs.getString("nome"));
+                autor.setBiografia(rs.getString("biografia"));
+                autores.add(autor);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return autores;
+    }
 }

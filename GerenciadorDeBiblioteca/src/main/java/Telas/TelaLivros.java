@@ -4,6 +4,9 @@
  */
 package Telas;
 
+import Classes.Livros;
+import DAO.LivrosDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +21,7 @@ public class TelaLivros extends javax.swing.JFrame {
      */
     public TelaLivros() {
         initComponents();
+        carregarLivros();
     }
 
     /**
@@ -172,18 +176,28 @@ public class TelaLivros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Titulo", "Autor", "Categoria", "Ano"
+                "ID", "Titulo", "Autor", "Categoria", "Ano"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(tbLivros);
+        if (tbLivros.getColumnModel().getColumnCount() > 0) {
+            tbLivros.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,6 +226,23 @@ public class TelaLivros extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
  
+     private void carregarLivros() {
+        DefaultTableModel modelo = (DefaultTableModel) tbLivros.getModel();
+        modelo.setNumRows(0);
+        LivrosDAO livroDAO = new LivrosDAO();
+        List<Livros> livros = livroDAO.getAllLivros();
+
+        for (Livros livro : livros) {
+            modelo.addRow(new Object[]{
+                livro.getIdLivro(),
+                livro.getTitulo(),
+                livro.getIdAutor(),
+                livro.getIdCategoria(), 
+                livro.getAno()
+            });
+        }
+    }
+    
     private void txtAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAutorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAutorActionPerformed

@@ -4,7 +4,11 @@
  */
 package Telas;
 
+import Classes.Autores;
+import DAO.AutoresDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +22,7 @@ public class TelaAutores extends javax.swing.JFrame {
      */
     public TelaAutores() {
         initComponents();
+        carregarAutores();
     }
 
     /**
@@ -48,20 +53,39 @@ public class TelaAutores extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Biografia"
+                "ID", "Nome", "Biografia"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         tbAutores.setColumnSelectionAllowed(true);
+        tbAutores.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tbAutoresAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(tbAutores);
         tbAutores.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tbAutores.getColumnModel().getColumnCount() > 0) {
+            tbAutores.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jLabel1.setText("Nome:");
 
@@ -166,7 +190,23 @@ public class TelaAutores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ 
+ 
+    private void carregarAutores() {
+        DefaultTableModel modelo = (DefaultTableModel) tbAutores.getModel();
+        modelo.setNumRows(0);
+        AutoresDAO autorDAO = new AutoresDAO();
+        List<Autores> autores = autorDAO.getAllAutores();
 
+        for (Autores autor : autores) {
+            modelo.addRow(new Object[]{
+                autor.getIdAutor(),
+                autor.getNome(),
+                autor.getBiografia()
+            });
+        }
+    }
+     
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btAdicionarActionPerformed
@@ -176,25 +216,25 @@ public class TelaAutores extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btAdicionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAdicionarMouseClicked
-        // Obtém os valores dos campos de texto
+        
     String nome = txtNome.getText();
     String biografia = txtBiografia.getText();
     
 
-    // Verifica se os campos não estão vazios
+   
     if (nome.isEmpty() || biografia.isEmpty()) {
         JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    // Converte o ano para inteiro
+ 
     
 
-    // Adiciona os valores na tabela (tbLivros)
+   
     DefaultTableModel model = (DefaultTableModel) tbAutores.getModel();
     model.addRow(new Object[]{nome, biografia});
 
-    // Limpa os campos de texto após adicionar
+    
     txtNome.setText("");
     txtBiografia.setText("");
                                             
@@ -223,6 +263,10 @@ public class TelaAutores extends javax.swing.JFrame {
        frameTelaPrincipal.setVisible(true);
        setVisible(false);
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void tbAutoresAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbAutoresAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbAutoresAncestorAdded
 
     /**
      * @param args the command line arguments

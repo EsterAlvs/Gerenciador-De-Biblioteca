@@ -116,4 +116,26 @@ public class CategoriasDAO {
             System.out.println(e.getMessage());
         }
     }
+    public List<Categorias> getAllCategorias() {
+        List<Categorias> categorias = new ArrayList<>();
+        String sql = "SELECT * FROM categorias";
+
+        try (Connection conn = Conexao.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Categorias categoria = new Categorias();
+                categoria.setIdCategoria(rs.getInt("id_categoria"));
+                categoria.setNome(rs.getString("nome"));
+                categoria.setDescricao(rs.getString("descricao"));
+                categorias.add(categoria);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return categorias;
+    }
 }

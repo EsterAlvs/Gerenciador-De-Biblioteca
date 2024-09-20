@@ -30,6 +30,10 @@ public class Livros {
         this.ano = ano;
     }
 
+    public Livros() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
     public int getId() {
         return id;
@@ -69,6 +73,14 @@ public class Livros {
 
     public void setAno(int ano) {
         this.ano = ano;
+    }
+
+    public void setIdLivro(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getIdLivro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 

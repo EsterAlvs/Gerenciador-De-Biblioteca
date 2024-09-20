@@ -25,6 +25,10 @@ public class Autores {
         this.biografia = biografia;
     }
 
+    public Autores() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
     public int getId() {
         return id;
@@ -48,5 +52,13 @@ public class Autores {
 
     public void setBiografia(String biografia) {
         this.biografia = biografia;
+    }
+
+    public void setIdAutor(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getIdAutor() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

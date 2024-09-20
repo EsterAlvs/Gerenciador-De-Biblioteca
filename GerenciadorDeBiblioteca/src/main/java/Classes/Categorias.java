@@ -24,6 +24,10 @@ public class Categorias {
         this.descricao = descricao;
     }
 
+    public Categorias() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
     public int getId() {
         return id;
@@ -47,6 +51,14 @@ public class Categorias {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public void setIdCategoria(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getIdCategoria() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 

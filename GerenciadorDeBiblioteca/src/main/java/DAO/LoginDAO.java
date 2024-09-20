@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * @author ester
  */
 public class LoginDAO {
-     // Método para autenticar o usuário no banco de dados
+     
     public boolean authenticate(String usernameOrEmail, String senha) {
         String sql = "SELECT * FROM cadastro WHERE (nome = ? OR email = ?) AND senha = ?";
         boolean isAuthenticated = false;
@@ -40,7 +40,7 @@ public class LoginDAO {
                 ResultSet loginRs = loginStmt.executeQuery();
 
                 if (!loginRs.next()) {
-                    // O usuário não tem um login registrado
+                 
                     isAuthenticated = false;
                 }
             }
